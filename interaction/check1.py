@@ -3,6 +3,7 @@
 from nclib import netcat
 import sys
 
+
 def main():
 
     host = sys.argv[1]
@@ -10,21 +11,12 @@ def main():
 
     conn = netcat.Netcat((host, port))
 
-    #result = conn.recvuntil(b'awesome chall\n')
-    result = conn.recvuntil(b'who are you?\n')
-    assert b"stderr" not in result
+    conn.sendline(b'3')
 
-    to_send = b"adam"
+    result = conn.recvuntil(b'Selection does not exist. Lose!\n', timeout=10)
 
-    conn.sendline(to_send)
-
-    result = conn.recvuntil(b'you said adam\n')
-    assert b"stderr" not in result
-
-    sys.exit(0)
+    assert result is not None
 
 
 if __name__ == '__main__':
     main()
-    
-

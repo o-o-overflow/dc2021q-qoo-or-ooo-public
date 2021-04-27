@@ -1,2 +1,4 @@
 # For example:
 nclib
+pwn
+pycryptodome

@@ -1,16 +1,17 @@
 # Base service info for the scoreboard ########################################
-service_name: "template"
-description: "This is a template service."
+service_name: "qoo-or-ooo"
+description: "This is another QOO's challenge. Wait, is this QOO or OOO?"
 tags:
-  - pwn
-  - reversing
+  - crypto
+  - --special-emoji-💰
+  - --special-lat-71
+  - --special-lon-82
 authors:
-  - author1
-  - author2
+  - tiffanyb
 
 # Flag info
 violates_flag_format: false         # if this is not "true", the flag is verfied against the flag format
-flag: "OOO{this is a test flag}"    # change it!
+flag: "OOO{qoo_is_a_good_competitor_and_zardus_is_a_leaker}"    # change it!
 copy_flag_using_build_arg: True     # Optionally: pass in THE_FLAG=(the flag above) using --build-arg (allows variable flags if desired for testing)
 
 # How players will connect to your service.
@@ -34,20 +35,21 @@ type: jeopardy
 # The paths are relative to the repository
 # They are published manually. IF YOU CHANGE THEM DURING THE GAME YELL!
 public_files:
-  - service/service
-  - service/src/config.py
+  - service/src/service.py
+  - service/src/backend.py
+  - service/src/coin.py
+  - service/src/game.py
+  - service/src/players.py
 
 
 # Test scripts are heavily encouraged.
 # All scripts should exit 0 if nothing went wrong.
 # Scripts are automatically determined to be exploit scripts if they start with the word "exploit".
-# Exploit scripts must output the flag using "FLAG: <FLAG>" and exit with 0 if the flag was captured correctly. 
+# Exploit scripts must output the flag using "FLAG: <FLAG>" and exit with 0 if the flag was captured correctly.
 # The paths are absolute in the `interaction` docker container.
 interactions:
-  - /exploit1.py
-  - /exploit2.sh
+  - /exploit.py
   - /check1.py
-  - /check2.sh
 
 
 # It's strongly suggested to have a healthcheck regex
@@ -57,7 +59,7 @@ interactions:
 # Example: healthcheck_tcp: awesome chall
 #          healthcheck_tcp_send: some intial command
 # Example: healthcheck_http: Author Login
-healthcheck_tcp: awesome chall
+healthcheck_tcp: Round 0
 
 
 
@@ -66,13 +68,14 @@ healthcheck_tcp: awesome chall
 
 # This is the number of concurrent connections that a container should be able to handle.
 # Also see xinetd's instances parameter
-concurrent_connections: 64
+concurrent_connections: 2
+shortread_allowed_diff: -1
 
 # Resource limits that will go in k8s
 # request_xxx is used for scheduling (overcommitting)
 # These should mesh with the xinetd's rlimit_as and number of concurrent instances
-request_memory: 512m
-limit_memory: 512m
+request_memory: 1024m
+limit_memory: 1024m
 
 
 
